@@ -3,15 +3,12 @@ package org.ecommerce3.entity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
-@Table(name="user")
+@Table(name="cart")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Cart {
@@ -19,12 +16,12 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name="cartId", nullable = false)
+    @Column(name="cartId", unique=true, nullable = false)
     @NotNull
     Double cartId;
 
     @ManyToOne(fetch = FetchType.LAZY) // As many carts can belong to one user
     @JoinColumn(name = "userId", nullable = false)
-    User user;
+    Users user;
 
 }

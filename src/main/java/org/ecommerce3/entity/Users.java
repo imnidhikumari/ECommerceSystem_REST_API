@@ -6,29 +6,30 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @Column(name="userId", nullable = false)
-    @NotNull
-    Double userId;
+    @NotBlank
+    String userId;
 
     @Column(name="name", nullable = false)
     @NotBlank
     String name;
 
-    @Column(name="email", nullable = false)
+    @Column(name="email", unique = true, nullable = false)
     @NotBlank
+    @Email(message = "Invalid email format")
     String email;
 
     @Column(name="password", unique=true, nullable = false)

@@ -3,6 +3,7 @@ package org.ecommerce3.entity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.ecommerce3.enums.OrderStatus;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Order {
     Long id;
 
     @Column(name = "orderId", unique = true, nullable = false)
-    @NotNull
+    @NotBlank(message = "orderId cannot be blank")
     String orderId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +34,8 @@ public class Order {
     @CreationTimestamp  // Automatically sets the current timestamp
     Date orderDate;
 
-    @Column(name = "status", nullable = false, length = 100, columnDefinition = "VARCHAR(100) DEFAULT 'Pending'")
-    @NotBlank
-    String Status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "orderStatus", nullable = false, length = 100)
+    @NotNull(message = "orderStatus cannot be null")
+    OrderStatus orderStatus = OrderStatus.PENDING;
 }

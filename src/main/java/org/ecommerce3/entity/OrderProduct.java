@@ -2,7 +2,6 @@ package org.ecommerce3.entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -31,7 +30,7 @@ public class OrderProduct {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId", nullable = false)
     @NotNull(message = "productId cannot be null")
-    Product product;
+    Products product;
 
     @Column(name="quantity", nullable = false, columnDefinition = "INT DEFAULT 1")
     @NotNull

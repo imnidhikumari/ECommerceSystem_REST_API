@@ -3,13 +3,11 @@ package org.ecommerce3.entity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 @Table(name="product")
@@ -21,8 +19,8 @@ public class CartProduct {
     Long id;
 
     @Column(name="cartProductId", unique=true, nullable = false)
-    @NotNull
-    Double cartProductId;
+    @NotBlank
+    String cartProductId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cartId", nullable = false)
@@ -32,9 +30,9 @@ public class CartProduct {
     @ManyToOne(fetch = FetchType.LAZY)
     @Column(name="productId", nullable = false)
     @NotNull(message = "productId must not be null")
-    Product product;
+    Products product;
 
-    @Column(name="quantity", nullable = false, columnDefinition = "INT DEFAULT 1")
+    @Column(name="quantity", columnDefinition = "INT DEFAULT 1")
     @NotNull
     @Min(value = 1, message = "quantity must be at least 1")
     Integer quantity;

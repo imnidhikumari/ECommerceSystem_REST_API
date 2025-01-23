@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UsersRepository {
     private final SessionFactory sessionFactory;
@@ -38,11 +39,11 @@ public class UsersRepository {
         }
     }
 
-    public Users findUserByEmail(String email) {
+    public Optional<Users> findUserByEmail(String email) {
         try (Session session = sessionFactory.openSession()) {
             Query<Users> query = session.createNamedQuery("findUserByEmail", Users.class);
             query.setParameter("email", email);
-            return query.uniqueResult();
+            return Optional.ofNullable(query.uniqueResult());
         }
     }
 }

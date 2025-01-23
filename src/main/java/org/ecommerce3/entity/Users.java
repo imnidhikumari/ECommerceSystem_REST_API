@@ -3,11 +3,13 @@ package org.ecommerce3.entity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.ecommerce3.enums.UsersRole;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -35,6 +37,11 @@ public class Users {
     @Column(name="password", unique=true, nullable = false)
     @NotBlank
     String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="role", nullable = false)
+    @NotNull
+    UsersRole usersRole = UsersRole.CUSTOMER; // Default Value
 
     @Column(name="createdAt", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

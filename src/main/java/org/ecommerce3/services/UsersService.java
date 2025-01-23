@@ -1,4 +1,4 @@
-package org.ecommerce3.service;
+package org.ecommerce3.services;
 
 import org.ecommerce3.entity.Users;
 import org.ecommerce3.repository.UsersRepository;

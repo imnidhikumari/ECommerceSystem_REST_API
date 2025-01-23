@@ -1,7 +1,7 @@
 package org.ecommerce3.resources;
 
 import org.ecommerce3.entity.Users;
-import org.ecommerce3.service.UsersService;
+import org.ecommerce3.services.UsersService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

@@ -17,4 +17,10 @@
         ]]>
     </query>
 
+    <!-- Query to get all cart for a user -->
+    <sql-query name="getAllCartByUserId">
+           <![CDATA[
+                SELECT * FROM cart WHERE Users.userId = :userId
+           ]]>
+    </sql-query>
 </hibernate-mapping>
